@@ -9,11 +9,14 @@ Gem::Specification.new do |s|
   s.summary = "Simple and flexible Ruby On Rails Ecomerce engine"
   s.description = "Simple and flexible Ruby On Rails Ecomerce engine"
 
-  s.add_dependency 'rails', '~> 4.1.0'
+  s.test_files = Dir["spec/**/*"]
+
+  s.add_dependency 'rails', '~> 4.0.0'
   s.add_dependency 'awesome_nested_set'
+  s.add_dependency 'pg'
 
   s.add_development_dependency 'rspec-core'
-  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rspec-rails', '~> 3.0.0'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'factory_girl_rails'
