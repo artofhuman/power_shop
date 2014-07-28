@@ -10,4 +10,8 @@ describe Category do
     it { expect(subject).to have_db_column(:created_at) }
     it { expect(subject).to have_db_column(:updated_at) }
   end
+
+  describe 'associations' do
+    it { expect(subject).to have_many(:products) }
+  end
 end
