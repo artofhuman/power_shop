@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.belongs_to :category
       t.boolean :active, default: true
-      t.string :name
+      t.string :name, null: false
       t.string :slug
       t.string :image
       t.text :description

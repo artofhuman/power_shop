@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.0.0'
   s.add_dependency 'awesome_nested_set'
   s.add_dependency 'pg'
+  #s.add_dependency 'active_admin-awesome_nested_set'
 
   s.add_dependency 'acts_as_shopping_cart', '~> 0.2.1'
 

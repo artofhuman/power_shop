@@ -1,0 +1,40 @@
+ActiveAdmin.register Product do
+  menu :priority => 3, label: 'Products'
+
+  permit_params :id, :category_id, :active, :name, :slug, :price
+
+  form(:html => { :multipart => true }) do |f|
+    f.inputs 'Product' do
+      f.input :category, :as => :select, :collection => Category.all.collect { |c| ["#{'  -- ' * c.depth}#{c.name}", c.id ] }
+      f.input :active
+      f.input :name
+      f.input :slug
+      f.input :price
+
+    end
+
+    f.actions
+  end
+
+  index do
+    column :name
+    column :slug
+    column :category
+    column :active do |product|
+      product.active? ? status_tag( "Active", :ok ) : status_tag( "Disabled")
+    end
+    column :price
+
+    actions
+  end
+
+  filter :active
+  filter :category
+  filter :name
+  filter :price
+
+  # Preload association fore remove (n+1) query
+  def scoped_collection
+    resource_class.includes(:category)
+  end
+end

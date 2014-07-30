@@ -1,0 +1,26 @@
+ActiveAdmin.register Category do
+  menu :priority => 4, label: 'Categories'
+
+  config.sort_order = 'lft_asc'
+  sortable_tree_member_actions
+
+  permit_params :id, category: [:name, :parent_id]
+
+  index do
+    sortable_tree_indented_column :name
+
+    actions
+    sortable_tree_columns
+  end
+
+  filter :name
+
+  form do |f|
+    f.inputs do
+      f.input :parent, :as => :select
+      f.input :name
+    end
+
+    f.actions
+  end
+end
