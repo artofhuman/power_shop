@@ -1,13 +1,13 @@
 class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
-      t.belongs_to :category
+      t.belongs_to :category, null: false
       t.boolean :active, default: true
       t.string :name, null: false
       t.string :slug
       t.string :image
       t.text :description
-      t.float :price
+      t.float :price, null: false
 
       t.timestamps
     end

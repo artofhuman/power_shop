@@ -13,5 +13,11 @@ describe Product do
   describe 'associations' do
     it { expect(subject).to belong_to(:category) }
   end
+
+  describe 'validations' do
+    it { expect(subject).to validate_presence_of(:name) }
+    it { expect(subject).to validate_presence_of(:category_id) }
+    it { expect(subject).to validate_presence_of(:price) }
+  end
 end
 

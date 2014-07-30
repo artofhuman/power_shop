@@ -14,4 +14,8 @@ describe Category do
   describe 'associations' do
     it { expect(subject).to have_many(:products) }
   end
+
+  describe 'validations' do
+    it { expect(subject).to validate_presence_of(:name) }
+  end
 end
