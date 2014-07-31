@@ -17,24 +17,29 @@ ActiveRecord::Schema.define(version: 20140729041407) do
   enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
-    t.string   "name"
+    t.string   "name",                       null: false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
     t.integer  "depth"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "products_count", default: 0
   end
 
+  add_index "categories", ["lft"], name: "index_categories_on_lft", using: :btree
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
+  add_index "categories", ["rgt"], name: "index_categories_on_rgt", using: :btree
+
   create_table "products", force: true do |t|
-    t.integer  "category_id"
+    t.integer  "category_id",                null: false
     t.boolean  "active",      default: true
-    t.string   "name"
+    t.string   "name",                       null: false
     t.string   "slug"
     t.string   "image"
     t.text     "description"
-    t.float    "price"
+    t.float    "price",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -9,6 +9,7 @@ describe Category do
     it { expect(subject).to have_db_column(:depth).of_type(:integer) }
     it { expect(subject).to have_db_column(:created_at) }
     it { expect(subject).to have_db_column(:updated_at) }
+    it { expect(subject).to have_db_column(:description) }
   end
 
   describe 'associations' do

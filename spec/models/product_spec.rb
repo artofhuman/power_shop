@@ -8,6 +8,7 @@ describe Product do
     it { expect(subject).to have_db_column(:image).of_type(:string) }
     it { expect(subject).to have_db_column(:description).of_type(:text) }
     it { expect(subject).to have_db_column(:price).of_type(:float) }
+    it { expect(subject).to have_db_column(:description).of_type(:text) }
   end
 
   describe 'associations' do
