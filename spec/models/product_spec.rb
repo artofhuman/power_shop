@@ -13,6 +13,7 @@ describe Product do
 
   describe 'associations' do
     it { expect(subject).to belong_to(:category) }
+    it { expect(subject).to have_many(:images) }
   end
 
   describe 'validations' do

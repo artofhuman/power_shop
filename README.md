@@ -8,4 +8,5 @@ Simple and flexible Ruby On Rails Ecomerce engine
 
 Requirements
 
-1. CKeditor https://github.com/galetahub/ckeditor
+1. CKeditor https://github.com/galetahub/ckeditor (Add gem ckeditor to you Gemfile)
+2. Rmagick (sudo apt-get install libmagickwand-dev)

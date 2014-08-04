@@ -14,6 +14,7 @@ describe Category do
 
   describe 'associations' do
     it { expect(subject).to have_many(:products) }
+    it { expect(subject).to have_one(:image) }
   end
 
   describe 'validations' do

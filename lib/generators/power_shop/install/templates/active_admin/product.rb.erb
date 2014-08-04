@@ -1,17 +1,26 @@
 ActiveAdmin.register Product do
   menu :priority => 3, label: 'Products'
 
-  permit_params :id, :category_id, :active, :name, :slug, :price
+  permit_params :category_id, :active, :name, :slug, :price, :description,
+    images_attributes: [:id, :_destroy, :image]
 
   form(:html => { :multipart => true }) do |f|
     f.inputs 'Product' do
-      f.input :category, :as => :select, :collection => Category.all.collect { |c| ["#{'  -- ' * c.depth}#{c.name}", c.id ] }
+      f.input :category, :as => :select,
+        :collection => Category.all.collect { |c| ["#{'  -- ' * c.depth}#{c.name}", c.id ] }
       f.input :active
       f.input :name
       f.input :slug
       f.input :price
       f.input :description, :as => :ckeditor
+    end
 
+    f.inputs 'Additional images' do
+      f.has_many :images do |image_form|
+        image_form.input :image, :as  => :file,
+          :hint => image_tag(image_form.object.image.admin_thumb.url)
+          image_form.input :_destroy, :as => :boolean, :label => 'delete?'
+      end
     end
 
     f.actions
@@ -19,10 +28,19 @@ ActiveAdmin.register Product do
 
   index do
     column :name
+    column :image do |product|
+      if (image = product.main_image).present?
+        link_to edit_admin_product_path(product) do
+          image_tag(product.main_image.image.admin_thumb.url)
+        end
+      else
+        status_tag('Image not uplaoded')
+      end
+    end
     column :slug
     column :category
     column :active do |product|
-      product.active? ? status_tag( "Active", :ok ) : status_tag( "Disabled")
+      product.active? ? status_tag("Active", :ok) : status_tag("Disabled")
     end
     column :price
 
@@ -36,6 +54,6 @@ ActiveAdmin.register Product do
 
   # Preload association fore remove (n+1) query
   def scoped_collection
-    resource_class.includes(:category)
+    resource_class.includes(:category, :images)
   end
 end

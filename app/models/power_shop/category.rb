@@ -5,7 +5,11 @@ module PowerShop
 
     acts_as_nested_set
 
-    has_many :products
+    has_many :products, :dependent => :destroy
+    has_one :image, :class_name => '::ShopImage', :as => :subject,
+      :dependent => :destroy
+
+    accepts_nested_attributes_for :image, :allow_destroy => true
 
     validates :name, presence: true
   end

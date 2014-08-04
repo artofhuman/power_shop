@@ -4,7 +4,8 @@ ActiveAdmin.register Category do
   config.sort_order = 'lft_asc'
   sortable_tree_member_actions
 
-  permit_params :id, :name, :parent_id, :description
+  permit_params :id, :name, :parent_id, :description,
+    image_attributes: [:id, :_destroy, :image]
 
   index do
     sortable_tree_indented_column :name
@@ -15,11 +16,20 @@ ActiveAdmin.register Category do
 
   filter :name
 
-  form do |f|
+  form(:html => { :multipart => true }) do |f|
     f.inputs do
       f.input :parent, :as => :select
       f.input :name
       f.input :description, :as => :ckeditor
+    end
+
+    f.inputs 'Image', :for => [:image, f.object.image || f.object.build_image] do |image_form|
+      image_form.input :image,
+        :hint => f.object.image.present? ? image_tag(f.object.image.image.admin_thumb.url) : ''
+
+      unless f.object.image.new_record?
+        image_form.input :_destroy, :as => :boolean, :label => 'delete?'
+      end
     end
 
     f.actions
