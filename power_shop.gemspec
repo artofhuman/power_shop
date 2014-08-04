@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   #s.add_dependency 'active_admin-awesome_nested_set'
 
   s.add_dependency 'acts_as_shopping_cart', '~> 0.2.1'
+  s.add_dependency 'friendly_id', '~> 5.0.0'
 
   s.add_development_dependency 'rspec-core'
   s.add_development_dependency 'rspec-rails', '~> 3.0.0'

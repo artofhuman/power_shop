@@ -10,7 +10,6 @@ ActiveAdmin.register Product do
         :collection => Category.all.collect { |c| ["#{'  -- ' * c.depth}#{c.name}", c.id ] }
       f.input :active
       f.input :name
-      f.input :slug
       f.input :price
       f.input :description, :as => :ckeditor
     end
@@ -55,5 +54,11 @@ ActiveAdmin.register Product do
   # Preload association fore remove (n+1) query
   def scoped_collection
     resource_class.includes(:category, :images)
+  end
+
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
   end
 end
