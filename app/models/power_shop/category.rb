@@ -5,7 +5,9 @@ module PowerShop
 
     acts_as_nested_set
 
-    has_many :products, :dependent => :destroy
+    has_many :products, :dependent => :destroy,
+      class_name: '::Product'
+
     has_one :image, :class_name => '::ShopImage', :as => :subject,
       :dependent => :destroy
 

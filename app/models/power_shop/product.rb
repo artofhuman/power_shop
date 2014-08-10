@@ -3,7 +3,8 @@ module PowerShop
     self.abstract_class = true
     self.table_name = 'products'
 
-    belongs_to :category, :counter_cache => true
+    belongs_to :category, :counter_cache => true,
+      class_name: '::Category'
 
     has_many :images, :class_name => '::ShopImage', :as => :subject,
       :dependent => :destroy
