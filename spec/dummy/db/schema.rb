@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140804101936) do
     t.string   "image"
     t.text     "description"
     t.float    "price",                      null: false
+    t.integer  "sort",        default: 500
     t.datetime "created_at"
     t.datetime "updated_at"
   end

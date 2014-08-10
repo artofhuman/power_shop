@@ -8,6 +8,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :image
       t.text :description
       t.float :price, null: false
+      t.integer :sort, default: 500
 
       t.timestamps
     end

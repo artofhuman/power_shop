@@ -21,4 +21,13 @@ describe Category do
   describe 'validations' do
     it { expect(subject).to validate_presence_of(:name) }
   end
+
+  describe 'delete' do
+    let(:product) { create :product}
+    let(:category) { product.category }
+
+    it 'delete category products after delete category' do
+      expect { category.destroy! }.to change { category.products.count }.by(-1)
+    end
+  end
 end

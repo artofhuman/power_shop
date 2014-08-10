@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg'
 
   s.add_dependency 'carrierwave'
+  s.add_dependency 'kaminari'
   s.add_dependency 'rmagick'
 
   #s.add_dependency 'active_admin-awesome_nested_set'
