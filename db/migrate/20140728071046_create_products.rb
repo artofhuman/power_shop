@@ -5,7 +5,6 @@ class CreateProducts < ActiveRecord::Migration
       t.boolean :active, default: true
       t.string :name, null: false
       t.string :slug
-      t.string :image
       t.text :description
       t.float :price, null: false
       t.integer :sort, default: 500
