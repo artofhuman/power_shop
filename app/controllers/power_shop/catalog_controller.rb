@@ -4,8 +4,7 @@ module PowerShop
     #
     # Returns: text/html
     def index
-      @products = ::Product.active.order(:sort, :id)
-        .page(params[:page])
+      @products = scoped_products.page(params[:page])
     end
 
     # Public: show products inside current category
@@ -13,9 +12,13 @@ module PowerShop
     # Returns: text/html
     def category
       @category = ::Category.friendly.find(params[:id])
+      @products = scoped_products.where(category: @category).page(params[:page])
+    end
 
-      @products = @category.products.active.order(:sort, :id)
-        .page(params[:page])
+    protected
+
+    def scoped_products
+      ::Product.active.order(:sort, :id).includes(:images)
     end
   end
 end
