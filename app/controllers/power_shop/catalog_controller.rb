@@ -19,6 +19,7 @@ module PowerShop
     #
     # Returns text/html
     def product
+      @category = ::Category.friendly.find(params[:category_id])
       @product = scoped_products.friendly.find(params[:id])
     end
 

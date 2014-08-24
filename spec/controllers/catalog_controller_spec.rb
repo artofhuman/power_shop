@@ -38,10 +38,25 @@ describe CatalogController, :type => :controller do
   end
 
   describe 'GET #product' do
+
+    context 'when wrong category slug' do
+      let(:product) { create :product, active: true }
+
+      subject(:get) do
+        get :product, id: product.slug, category_id: 'wrong-slug',
+          use_route: 'power_shop'
+      end
+
+      it { expect{ get }.to raise_error }
+    end
+
     context 'when product active' do
       let(:product) { create :product, active: true }
 
-      before { get :product, id: product.slug, use_route: 'power_shop' }
+      before do
+        get :product, id: product.slug, category_id: category.slug,
+          use_route: 'power_shop'
+      end
 
       it { expect(response).to be_success }
       it { expect(assigns(:product)).to eq product }
@@ -51,9 +66,7 @@ describe CatalogController, :type => :controller do
       let(:product) { create :disabled_product }
 
       subject(:get) do
-        get :product,
-          id: product.slug,
-          category_id: product.category.slug,
+        get :product, id: product.slug, category_id: product.category.slug,
           use_route: 'power_shop'
       end
 
