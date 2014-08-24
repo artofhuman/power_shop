@@ -15,10 +15,18 @@ module PowerShop
       @products = scoped_products.where(category: @category).page(params[:page])
     end
 
+    # Public: show detail page for product
+    #
+    # Returns text/html
+    def product
+      @product = scoped_products.friendly.find(params[:id])
+    end
+
     protected
 
     def scoped_products
-      ::Product.active.order(:sort, :id).includes(:images)
+      ::Product.active.order(:sort, :id)
+        .includes(:images, :category)
     end
   end
 end

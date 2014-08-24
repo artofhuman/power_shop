@@ -36,5 +36,29 @@ describe CatalogController, :type => :controller do
     it { expect(expected_products).to include active_product }
     it { expect(expected_products).not_to include disabled_product}
   end
+
+  describe 'GET #product' do
+    context 'when product active' do
+      let(:product) { create :product, active: true }
+
+      before { get :product, id: product.slug, use_route: 'power_shop' }
+
+      it { expect(response).to be_success }
+      it { expect(assigns(:product)).to eq product }
+    end
+
+    context 'when product disabled' do
+      let(:product) { create :disabled_product }
+
+      subject(:get) do
+        get :product,
+          id: product.slug,
+          category_id: product.category.slug,
+          use_route: 'power_shop'
+      end
+
+      it { expect{ get }.to raise_error }
+    end
+  end
 end
 
