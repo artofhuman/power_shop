@@ -6,4 +6,8 @@ PowerShop::Engine.routes.draw do
   end
 
   get 'catalog', to: 'catalog#index'
+
+  resource :cart, :only => [:show, :destroy] do
+    post 'add_product/:product_id' => 'cart#add_product', :as => 'add_product'
+  end
 end

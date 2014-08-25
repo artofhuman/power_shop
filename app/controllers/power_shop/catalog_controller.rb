@@ -1,5 +1,5 @@
 module PowerShop
-  class CatalogController < ApplicationController
+  class CatalogController < PowerShop::ApplicationController
     # Public: show all products with pagination
     #
     # Returns: text/html
