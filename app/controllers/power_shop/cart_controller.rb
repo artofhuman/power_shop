@@ -20,12 +20,22 @@ module PowerShop
       end
     end
 
+    # Pubclic: show cart page
+    #
+    # Returns text/html
+    def show
+      @cart = cart
+    end
+
     protected
 
     def find_product
-      @product = Product.find(params[:product_id])
+      @product = ::Product.find(params[:product_id])
     end
 
+    # Internal: render json response with cart params
+    #
+    # Returns text/json
     def render_json_cart
       render :json => {
         total_items: cart.total_unique_items,
