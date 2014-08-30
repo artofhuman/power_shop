@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :user_name
       t.string :user_phone
       t.string :user_email
+      t.string :delivery_address
 
       t.timestamps
     end
