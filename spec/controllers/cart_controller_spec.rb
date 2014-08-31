@@ -28,6 +28,12 @@ describe PowerShop::CartController, :type => :controller do
       it { expect(expected_json['total_items']).to eq 1 }
       it { expect(expected_json['subtotal']).to eq 500 }
     end
+
+    context 'when exists quantity param' do
+      before { post :add_product, product_id: product.id, quantity: 2, use_route: 'power_shop' }
+
+      it { expect(cart.shopping_cart_items.first.quantity).to eq 2 }
+    end
   end
 
   describe '#GET show' do

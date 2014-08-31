@@ -11,7 +11,7 @@ module PowerShop
     #
     # Returns text/html or text/json
     def add_product
-      cart.add(@product, @product.price, 1)
+      cart.add(@product, @product.price, params.fetch(:quantity, 1))
 
       if request.xhr?
         render_json_cart
@@ -21,6 +21,7 @@ module PowerShop
     end
 
     # Pubclic: show cart page
+    # TODO: preload associations
     #
     # Returns text/html
     def show
