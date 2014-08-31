@@ -6,6 +6,7 @@ require 'acts_as_shopping_cart'
 require 'carrierwave'
 require 'friendly_id'
 require 'kaminari'
+require 'validates_email_format_of'
 
 module PowerShop
   class Engine < Rails::Engine

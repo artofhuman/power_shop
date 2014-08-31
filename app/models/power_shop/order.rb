@@ -3,6 +3,6 @@ module PowerShop
     self.abstract_class = true
     self.table_name = 'orders'
 
-    has_many :order_items
+    has_many :order_items, class_name: '::OrderItem'
   end
 end

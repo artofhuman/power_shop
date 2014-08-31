@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :user_phone
       t.string :user_email
       t.string :delivery_address
+      t.float  :total, null: false
 
       t.timestamps
     end
