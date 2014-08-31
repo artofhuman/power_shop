@@ -9,6 +9,7 @@ PowerShop::Engine.routes.draw do
 
   resource :cart, :only => [:show, :destroy], controller: 'cart' do
     post 'add_product/:product_id' => 'cart#add_product', :as => 'add_product'
+    delete 'delete_product/:product_id' => 'cart#delete_product', :as => 'delete_product'
   end
 
   resource :order, :only => :create do

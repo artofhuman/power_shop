@@ -1,0 +1,12 @@
+ru:
+  activerecord:
+    models:
+      order:
+        one: 'Заказ'
+        few: 'Заказы'
+        many: 'Заказы'
+        other: 'Заказы'
+    attributes:
+      user_name: 'Имя'
+      user_email: 'email'
+      user_phone: 'телефон'

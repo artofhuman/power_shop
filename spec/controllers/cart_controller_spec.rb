@@ -3,11 +3,11 @@ require 'spec_helper'
 
 describe PowerShop::CartController, :type => :controller do
   let(:cart) { create :shopping_cart }
+  let(:product) { create :product, price: 500 }
+
   before { controller.stub(:cart).and_return(cart) }
 
   describe '#POST add_product' do
-    let(:product) { create :product, price: 500 }
-
     before { request.env["HTTP_REFERER"] = "/" }
 
     context 'when request is not xhr' do
@@ -34,6 +34,17 @@ describe PowerShop::CartController, :type => :controller do
 
       it { expect(cart.shopping_cart_items.first.quantity).to eq 2 }
     end
+  end
+
+  describe '#DELETE delete_product' do
+    before do
+      request.env["HTTP_REFERER"] = "/cart"
+      cart.add(product, product.price, 2)
+      delete :delete_product, product_id: product.id, use_route: 'power_shop'
+    end
+
+    it { expect(cart.reload).to be_empty }
+    it { expect(response).to redirect_to '/cart' }
   end
 
   describe '#GET show' do

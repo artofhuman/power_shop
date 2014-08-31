@@ -2,7 +2,7 @@ module PowerShop
   # Controller represents methods for cart
   class CartController < PowerShop::ApplicationController
 
-    before_filter :find_product, :only => [:add_product, :destroy]
+    before_filter :find_product, :only => [:add_product, :delete_product]
     skip_before_filter :verify_authenticity_token
 
     # Public: add products to shopping cart
@@ -18,6 +18,12 @@ module PowerShop
       else
         redirect_to :back
       end
+    end
+
+    def delete_product
+      # TODO: 99 - its hack for remove all items :)
+      cart.remove(@product, 99)
+      redirect_to :back
     end
 
     # Pubclic: show cart page
