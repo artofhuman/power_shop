@@ -11,6 +11,7 @@ module PowerShop
 
       if @order_form.valid?
         if @order_form.perform
+          flash[:order_id] = @order_form.order.id
           return redirect_to power_shop.success_order_url
         end
       end

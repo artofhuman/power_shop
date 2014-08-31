@@ -33,9 +33,13 @@ module PowerShop
     # Returns boolean
     def perform
       return false unless valid?
-      if make_order
+
+      if result = make_order
         cart.clear
+        send_emails
       end
+
+      result
     end
 
     protected
@@ -76,6 +80,11 @@ module PowerShop
       end
     rescue
       false
+    end
+
+    def send_emails
+      ::OrderNotifications.for_admin(order).deliver
+      ::OrderNotifications.for_user(order, user_email).deliver if user_email.present?
     end
 
     # Internal: sets form values
