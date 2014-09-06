@@ -17,5 +17,11 @@ module PowerShop
     initializer 'power_shop.add_middleware' do |app|
       app.middleware.use PowerShop::Middleware::ShoppingCart
     end
+
+    initializer :power_shop_factories, after: "factory_girl.set_factory_paths" do |app|
+      if defined?(FactoryGirl)
+        FactoryGirl.definition_file_paths << root.join('spec', 'factories')
+      end
+    end
   end
 end
