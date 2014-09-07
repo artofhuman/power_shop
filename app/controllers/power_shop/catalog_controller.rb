@@ -26,8 +26,7 @@ module PowerShop
     protected
 
     def scoped_products
-      ::Product.active.order(:sort, :id)
-        .includes(:images, :category)
+      ::Product.active.includes(:images, :category)
     end
   end
 end
