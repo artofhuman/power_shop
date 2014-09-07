@@ -6,8 +6,12 @@ Gem::Specification.new do |s|
   s.name = 'power_shop'
   s.version = PowerShop::VERSION
   s.authors = ["Semyon Pupkov"]
+  s.email   = ["semen.pupkov@gmail.com"]
+  s.homepage = "https://github.com/artofhuman/power_shop"
   s.summary = "Simple and flexible Ruby On Rails Ecomerce engine"
   s.description = "Simple and flexible Ruby On Rails Ecomerce engine"
+
+  s.licenses = ['MIT']
 
   s.test_files = Dir["spec/**/*"]
 
@@ -35,5 +39,4 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'pry-byebug'
-
 end
