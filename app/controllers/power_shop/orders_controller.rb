@@ -23,6 +23,7 @@ module PowerShop
     #
     # Returns text/html
     def success
+      @order = ::Order.find(flash[:order_id])
     end
 
     protected

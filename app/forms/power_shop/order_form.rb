@@ -57,12 +57,11 @@ module PowerShop
       end
     end
 
-    def create_order
-      not_expected_attributes = ['id', 'created_at', 'updated_at']
-      order_attributes = @order.attribute_names.reject do |attr|
-        not_expected_attributes.include?(attr)
-      end
+    def order_attributes
+      [:user_name, :user_phone, :user_email, :delivery_address, :total]
+    end
 
+    def create_order
       order_attributes.each do |attr|
         order.send("#{attr}=", self.send(attr))
       end
