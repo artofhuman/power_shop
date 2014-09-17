@@ -77,7 +77,9 @@ module PowerShop
         create_order
         create_order_items
       end
-    rescue
+    rescue => e
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
       false
     end
 
