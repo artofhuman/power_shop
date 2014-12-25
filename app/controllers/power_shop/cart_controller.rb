@@ -11,7 +11,7 @@ module PowerShop
     #
     # Returns text/html or text/json
     def add_product
-      cart.add(@product, @product.price, params.fetch(:quantity, 1))
+      cart.add(@product, @product.price, params.fetch(:quantity, 1).to_i)
 
       if request.xhr?
         render_json_cart

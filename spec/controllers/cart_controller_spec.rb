@@ -5,7 +5,7 @@ describe PowerShop::CartController, :type => :controller do
   let(:cart) { create :shopping_cart }
   let(:product) { create :product, price: 500 }
 
-  before { controller.stub(:cart).and_return(cart) }
+  before { allow(controller).to receive(:cart).and_return(cart) }
 
   describe '#POST add_product' do
     before { request.env["HTTP_REFERER"] = "/" }
@@ -29,8 +29,17 @@ describe PowerShop::CartController, :type => :controller do
       it { expect(expected_json['subtotal']).to eq 500 }
     end
 
+    context 'when product already in a cart' do
+      before do
+        cart.add(product, product.price, 1)
+        xhr :post, :add_product, product_id: product.id, quantity: '1', use_route: 'power_shop'
+      end
+
+      it { expect(cart.shopping_cart_items.first.quantity).to eq 2 }
+    end
+
     context 'when exists quantity param' do
-      before { post :add_product, product_id: product.id, quantity: 2, use_route: 'power_shop' }
+      before { post :add_product, product_id: product.id, quantity: '2', use_route: 'power_shop' }
 
       it { expect(cart.shopping_cart_items.first.quantity).to eq 2 }
     end

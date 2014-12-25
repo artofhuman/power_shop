@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'carrierwave'
   s.add_dependency 'kaminari'
-  # TODO: migrate to minimagic
   s.add_dependency 'mini_magick'
   s.add_dependency 'validates_email_format_of'
 
