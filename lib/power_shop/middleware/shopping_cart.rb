@@ -16,7 +16,7 @@ module PowerShop
       end
 
       def get_or_crete_cart(session)
-        cart = ::ShoppingCart.find_or_create_by_id(session[:shopping_cart_id])
+        cart = ::ShoppingCart.where(id: session[:shopping_cart_id]).first_or_create
         session[:shopping_cart_id] = cart.id
 
         cart
