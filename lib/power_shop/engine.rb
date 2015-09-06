@@ -10,8 +10,6 @@ require 'validates_email_format_of'
 
 module PowerShop
   class Engine < Rails::Engine
-    isolate_namespace PowerShop
-
     config.autoload_paths += %W(#{config.root}/lib)
 
     initializer 'power_shop.add_middleware' do |app|
