@@ -6,7 +6,34 @@ ru:
         few: 'Заказы'
         many: 'Заказы'
         other: 'Заказы'
+      product:
+        one: Товар
+        few: Товары
+        many: Товаров
+        other: Товары
+      category:
+        one: Категория
+        few: Категории
+        many: Категорий
+        other: Категории
+      shop_image:
+        one: Картинка
+        few: Картинки
+        many: Картинок
+        other: Картинки
     attributes:
-      user_name: 'Имя'
-      user_email: 'email'
-      user_phone: 'телефон'
+      common: &common
+        name: Название
+        description: Описание
+        created_at: Дата создания
+        updated_at: Дата обновления
+      category:
+        <<: *common
+        parent: Родительская категория
+        image: Картинка
+      product:
+        <<: *common
+        category: Категория
+        price: Цена
+      shop_image:
+        image: Картинка

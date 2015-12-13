@@ -14,6 +14,7 @@ module PowerShop
 
         template 'active_admin/category.rb.erb', 'app/admin/category.rb'
         template 'active_admin/product.rb.erb', 'app/admin/product.rb'
+        template 'active_admin/order.rb', 'app/admin/order.rb'
       end
     end
   end

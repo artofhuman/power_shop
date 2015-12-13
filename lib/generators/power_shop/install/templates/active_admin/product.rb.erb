@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  menu :priority => 3, label: 'Products'
+  menu :priority => 3
 
   permit_params :category_id, :active, :name, :slug, :price, :description,
     images_attributes: [:id, :_destroy, :image]

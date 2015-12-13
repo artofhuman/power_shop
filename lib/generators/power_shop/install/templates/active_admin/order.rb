@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  menu :priority => 2, label: 'Orders'
+  menu :priority => 2
 
   filter :user_name
   filter :user_phone

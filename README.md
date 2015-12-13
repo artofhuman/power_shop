@@ -1,4 +1,4 @@
-power_shop
+power_shop [WIP]
 ==========
 
 Simple and flexible Ruby On Rails Ecomerce engine
@@ -7,7 +7,14 @@ Simple and flexible Ruby On Rails Ecomerce engine
 [![Code Climate](https://codeclimate.com/github/artofhuman/power_shop/badges/gpa.svg)](https://codeclimate.com/github/artofhuman/power_shop)
 [![Gem Version](https://badge.fury.io/rb/power_shop.svg)](http://badge.fury.io/rb/power_shop)
 
-Requirements
+## Requirements
 
 1. CKeditor https://github.com/galetahub/ckeditor (Add gem ckeditor to you Gemfile)
 2. Rmagick (sudo apt-get install libmagickwand-dev)
+3. gem 'active_admin-awesome_nested_set'
+
+## Installation
+
+```
+rails generate power_shop:install .
+```
