@@ -1,11 +1,9 @@
-# coding: utf-8
 Rails.application.routes.draw do
   scope 'catalog' do
-    get '/:id', to: 'catalog#category', as: 'category'
-    get '/:category_id/:id', to: 'catalog#product', as: 'product'
+    resources :categories, only: [:show]
+    resources :products, only: [:show]
+    get 'catalog', to: 'catalog#index'
   end
-
-  get 'catalog', to: 'catalog#index'
 
   resource :cart, :only => [:show, :destroy], controller: 'cart' do
     post 'add_product/:product_id' => 'cart#add_product', :as => 'add_product'

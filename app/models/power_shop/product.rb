@@ -9,7 +9,7 @@ module PowerShop
     after_destroy :decrement_category_count
     after_update :update_category_count, if: ->(product) { product.active_changed? }
 
-    has_many :images, class_name: '::ShopImage', as: :subject, dependent: :destroy
+    has_many :images, class_name: '::ProductImage', dependent: :destroy
 
     accepts_nested_attributes_for :images, :allow_destroy => true
     validates_presence_of :name, :price, :category_id

@@ -8,8 +8,12 @@ module PowerShop
     has_many :products, dependent: :destroy, class_name: '::Product'
     has_one :image, class_name: '::ShopImage', as: :subject, dependent: :destroy
 
-    accepts_nested_attributes_for :image, :allow_destroy => true
+    accepts_nested_attributes_for :image, allow_destroy: true
 
     validates :name, presence: true
+
+    def products_with_child_categories
+      Product.where(category_id: self_and_descendants.ids)
+    end
   end
 end

@@ -7,14 +7,6 @@ module PowerShop
       @products = scoped_products.page(params[:page])
     end
 
-    # Public: show products inside current category
-    #
-    # Returns: text/html
-    def category
-      @category = ::Category.friendly.find(params[:id])
-      @products = scoped_products.where(category: @category).page(params[:page])
-    end
-
     # Public: show detail page for product
     #
     # Returns text/html
