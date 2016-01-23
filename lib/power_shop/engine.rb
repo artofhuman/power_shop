@@ -15,7 +15,7 @@ module PowerShop
 
 
     initializer 'power_shop' do |app|
-      #app.middleware.use PowerShop::Middleware::ShoppingCart
+      app.middleware.use PowerShop::Middleware::ShoppingCart
       app.config.paths['db/migrate'].concat(config.paths['db/migrate'].expanded)
     end
 

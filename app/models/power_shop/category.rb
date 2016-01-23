@@ -13,7 +13,7 @@ module PowerShop
     validates :name, presence: true
 
     def products_with_child_categories
-      Product.where(category_id: self_and_descendants.ids)
+      ::Product.where(category_id: self_and_descendants.ids)
     end
   end
 end

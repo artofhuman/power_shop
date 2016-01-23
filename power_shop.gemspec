@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick'
   s.add_dependency 'validates_email_format_of'
 
-  s.add_dependency 'acts_as_shopping_cart', '~> 0.2.1'
+  s.add_dependency 'acts_as_shopping_cart'
   s.add_dependency 'friendly_id', '~> 5.0.0'
 
   s.add_development_dependency 'simplecov'
