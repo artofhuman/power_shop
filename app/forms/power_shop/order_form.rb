@@ -12,7 +12,8 @@ module PowerShop
     validates :user_name, :user_phone, presence: true
     validates_email_format_of :user_email, allow_nil: true, allow_blank: true
 
-    delegate :total, :to => :cart
+    delegate :total, to: :cart
+    delegate :order_items, to: :order
 
     # Public: initialize new order form
     #
@@ -36,7 +37,7 @@ module PowerShop
 
       if result = make_order
         cart.clear
-        send_emails
+        #send_emails
       end
 
       result
@@ -47,12 +48,7 @@ module PowerShop
     def create_order_items
       cart.shopping_cart_items.each do |cart_item|
         order.order_items.create(
-          {
-            product_id: cart_item.item.id,
-            product_title: cart_item.item.name,
-            price: cart_item.price,
-            quantity: cart_item.quantity
-          }
+          yield cart_item
         )
       end
     end
@@ -69,17 +65,28 @@ module PowerShop
       order.save!
     end
 
+    def order_item_attrs(cart_item)
+      {
+        product_id: cart_item.item.id,
+        product_title: cart_item.item.name,
+        price: cart_item.price,
+        quantity: cart_item.quantity
+      }
+    end
     # Internal: it makes order in database
     #
     # Retuurns boolean
     def make_order
       ActiveRecord::Base.transaction do
         create_order
-        create_order_items
+        create_order_items do |cart_item|
+          order_item_attrs(cart_item)
+        end
       end
     rescue => e
       Rails.logger.error e.message
       Rails.logger.error e.backtrace.join("\n")
+      raise e
       false
     end
 
