@@ -37,3 +37,9 @@ ru:
         price: Цена
       shop_image:
         image: Картинка
+      order:
+        <<: *common
+        user_name: Имя покупателя
+        user_email: Email покупателя
+        user_phone: Телефон покупателя
+        total: Сумма
