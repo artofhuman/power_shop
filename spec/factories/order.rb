@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :order do
+    total 1000
   end
 
   factory :order_item do
