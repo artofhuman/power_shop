@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+PowerShop::Engine.routes.prepend do
   scope 'catalog' do
     resources :categories, only: [:show]
     resources :products, only: [:show]
