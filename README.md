@@ -18,3 +18,9 @@ Simple and flexible Ruby On Rails Ecomerce engine
 ```
 rails generate power_shop:install .
 ```
+
+```
+# config/routes.rb
+
+PowerShop.routes
+```
