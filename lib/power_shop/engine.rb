@@ -13,9 +13,7 @@ module PowerShop
     config.autoload_paths += %W(#{config.root}/lib)
     config.i18n.load_path += Dir[config.root.join('locales', '*.{rb,yml}').to_s]
 
-
     initializer 'power_shop' do |app|
-      app.middleware.use PowerShop::Middleware::ShoppingCart
       app.config.paths['db/migrate'].concat(config.paths['db/migrate'].expanded)
     end
 

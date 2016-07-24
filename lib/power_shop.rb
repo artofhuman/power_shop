@@ -1,6 +1,11 @@
 require 'power_shop/engine'
+require 'dry-configurable'
 
 module PowerShop
+  extend Dry::Configurable
+
+  setting :cart_cookie_id, :shopping_cart_id
+
   def self.routes
     Rails.application.routes.draw do
       scope 'catalog' do
