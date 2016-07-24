@@ -1,8 +1,6 @@
 module PowerShop
   # Controller represents methods for cart
   class CartController < PowerShop::ApplicationController
-
-    before_filter :find_product, :only => [:add_product, :destroy]
     skip_before_filter :verify_authenticity_token
 
     # Public: add products to shopping cart
@@ -11,9 +9,10 @@ module PowerShop
     #
     # Returns text/html or text/json
     def add_product
+      @product = product_resource
+
       cart.add(@product, @product.price, params.fetch(:quantity, 1).to_i)
 
-      binding.pry #NOTE: debugger
       if request.xhr?
         render_json_cart
       else
@@ -23,7 +22,7 @@ module PowerShop
 
     def destroy
       # TODO: 99 - its hack for remove all items :)
-      cart.remove(@product, 99)
+      cart.remove(product_resource, 99)
       redirect_to :back
     end
 
@@ -40,8 +39,8 @@ module PowerShop
 
     protected
 
-    def find_product
-      @product = ::Product.find(params[:product_id])
+    def product_resource
+      ::Product.find(params[:product_id])
     end
 
     # Internal: render json response with cart params
